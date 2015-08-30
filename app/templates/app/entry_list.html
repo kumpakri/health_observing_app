@@ -1,0 +1,19 @@
+{% load staticfiles %}
+{% load app_filters %}
+
+<html>
+
+	<head>
+
+		<title>Note viewer - edit</title>
+		<link rel="stylesheet" href="{% static "css/app.css" %}">
+		
+
+	</head>
+	<body>
+		{% for entry in entrys %}
+			<p><a href="{% url "edit_page" pk=entry.pk %}">{{ entry.datetime }} {{ entry.category }} {{ entry.value }}</a></p>
+		{% endfor %}
+	</body>
+
+</html>

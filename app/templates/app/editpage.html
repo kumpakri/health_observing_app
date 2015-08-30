@@ -1,0 +1,36 @@
+<!-- editpage.html -->
+
+{% load staticfiles %}
+{% load app_filters %}
+
+<html>
+
+	<head>
+
+		<title>Note viewer</title>
+		<link rel="stylesheet" href="{% static "css/app.css" %}">
+
+		<script language="javascript" type="text/javascript" src="\static\JavaScripts\datepicker\datetimepicker.js">
+		//Date Time Picker script- by TengYong Ng of http://www.rainforestnet.com
+		//Script featured on JavaScript Kit (http://www.javascriptkit.com)
+		//For this script, visit http://www.javascriptkit.com
+		// 
+		// script is changed - added format 'YYYYMMDD' 
+		</script>
+
+	</head>
+
+	<body>
+
+		<form method="POST" class="form-inline" name="EntryForm" id="EntryForm">{% csrf_token %}
+			{{ form.datetime }}
+			<a href="javascript:NewCal('id_datetime', 'yyyymmdd', true, 24);"><img src="\static\JavaScripts\datepicker\cal.gif" width="16" height="16" border="0"></a>
+			{{ form.category }}
+			{{ form.value }}
+			<input type="submit" name="enter" value="OK">
+			<input type="submit" name="delete" value="Delete">
+		</form>
+
+	</body>
+
+</html>

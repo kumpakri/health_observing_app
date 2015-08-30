@@ -1,0 +1,48 @@
+{% load staticfiles %}
+{% load app_filters %}
+
+<html>
+
+	<head>
+
+		<title>Note viewer - category</title>
+		<link rel="stylesheet" href="{% static "css/app.css" %}">
+		
+
+	</head>
+
+	<body class="category">
+		<table>
+			<tr>
+				<thead>
+					<th class="day">Day</th>
+					<th class="time">Time</th>
+					<th class="value">Value</th>
+				</thead>
+			</tr>
+			<tbody>
+			{% for day in dates %}
+			<tr>
+				<td class="day" rowspan="{{ dicty|get_length_of_values_span:day }}">  {{ day }} </td>
+					{% if dicty|get_length_of_values:day == 0 %}
+					<td class="time"></td><td class="value"></td>
+					{% else %}
+					<td class="time"> {{ dicty|get_at_index:day|get_at_index:0|get_time }} </td>
+					<td class="value">{{ dicty|get_at_index:day|get_at_index:0|get_value }}</td> 
+						{% if dicty|get_length_of_values:day > 1 %}
+							{% for i in dicty|get_length_of_values:day|get_range %}
+								<tr>
+									<td class="time"> {{ dicty|get_at_index:day|get_at_index:i|get_time }} </td>
+									<td class="value">{{ dicty|get_at_index:day|get_at_index:i|get_value }}</td>
+								</tr>
+							{% endfor %}
+						{% endif %}
+					{% endif %}
+			</tr>
+			{% endfor %}
+		</tbody>
+
+		</table>
+	</body>
+
+</html>

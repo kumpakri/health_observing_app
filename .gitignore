@@ -1,0 +1,6 @@
+db.sqlite3
+Project_structure.txt
+myvenv
+*.pyc
+__pycache__
+.DS_Store

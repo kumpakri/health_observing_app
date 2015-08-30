@@ -1,0 +1,40 @@
+<!-- homepage.html -->
+
+{% load staticfiles %}
+{% load app_filters %}
+
+<html>
+
+	<head>
+
+		<title>Note viewer</title>
+		<link rel="stylesheet" href="{% static "css/app.css" %}">
+
+		<script language="javascript" type="text/javascript" src="static/JavaScripts/datepicker/datetimepicker.js">
+		//Date Time Picker script- by TengYong Ng of http://www.rainforestnet.com
+		//Script featured on JavaScript Kit (http://www.javascriptkit.com)
+		//For this script, visit http://www.javascriptkit.com
+		// 
+		// script is changed - added format 'YYYYMMDD' 
+		</script>
+
+
+	</head>
+
+	<body>
+
+		<form method="POST" class="pure-input-rounded" name="EntryForm" id="EntryForm">{% csrf_token %}
+			{{ form.datetime }}
+			<a href="javascript:NewCal('id_datetime', 'yyyymmdd', true, 24);"><img src="static/JavaScripts/datepicker/cal.gif" width="16" height="16" border="0"></a>
+			<select class="form-control" name="category" id="category">
+			{% for choice in CHOICES %}
+			  <option value="{{ choice|get_at_index:0 }}">{{ choice|get_at_index:1 }}</option>
+			{% endfor %}
+			</select>
+			<input type="text" class="form-control" name="value" id="value" placeholder="Value">
+			<input type="submit" value="OK">
+		</form>
+
+	</body>
+
+</html>
